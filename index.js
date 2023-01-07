@@ -41,8 +41,34 @@ person[nickName] = "Deanathan";
 console.log(person);
 
 //Arrays
+//arrays are objects and can be used witht the dot operator
 
-let selectedColors = ["red","blue","green"];
-console.log(selectedColors);
+let selectedColors = ["red","blue"];
+selectedColors[2] = "green";
+selectedColors[3] = 1; //arrays do not have to all have same variable type
+console.log(selectedColors.length);
+
+//Functions
+
+//task performing function
+function greet(aName, aLastName) //function definition
+{
+    console.log("Hello " + aName + " " + aLastName);
+}
+
+//calculation function
+function square(number)
+{
+    return number * number;
+}
+
+lastName = "Longmire";
+greet(myName,lastName); //function call (same as C++)
+
+let myNumber = square(2); //function returns a value
+console.log(myNumber);
+
+
+
 
 
