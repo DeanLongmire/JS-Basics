@@ -151,5 +151,28 @@ myCircle["location"] = {x: 2}; //another way to do this, x now = 2
 delete myCircle.location; //deletes the location propety , can use bracket notation too
 
 //Enumerating Properties
+    //use a for loop to enemurate values
+
+for (let key in myCircle) //cycels through all properties/methods in myCircle
+{
+    console.log(key,myCircle[key]); //outputs the key
+    console.log("end of loop");
+}
+
+for (let key in myCircle) //cycels through all properties/methods in myCircle
+{
+    if(typeof myCircle[key] !== "function") //only executes if the key is a value
+    {
+        console.log(key,myCircle[key]); //outputs the key
+    }
+    console.log("end of loop");
+}
+
+//checking if property is in an object
+
+if("radius" in myCircle)
+    console.log("myCircle has a radius of " + myCircle.radius);
+
+//Abstraction
 
 
