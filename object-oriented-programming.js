@@ -74,6 +74,10 @@ function Circle(radius) //start function name with Capital letter
 
 const another = new Circle(1); 
 
+Circle.call({}, 1); //same as line above, first argument is target of 'this', other arguments are the parameters
+Circle.apply({}, [1]); //same as above except you can pass an array
+
+
 //Contructor Property
     //all objects have a property called constructor that references fucntion used to create object
     //use .contructor on an object in log to see its constructor
@@ -84,4 +88,68 @@ new Boolean();
 new Number();
 let y = 50; //f Number( [native code] )
 
-//Functions are objects
+//Value vs Refernce Types
+let a = 10;
+let b = a;
+
+a = 20;
+
+//a = 20 and b = 10, they are independent
+
+let c = {value: 10};
+let d = c;
+
+c.value = 20;
+
+//d and c = 20, since c is an object, the '=' sets the adress, not the value
+//primitives (values) are copied by value, Objects are copied by reference
+
+let number = 10;
+
+function increase(number) 
+{
+    number++;
+}
+
+increase(number);
+console.log(number);
+
+//the console would show number = 10 bc value is only copied into the parameter
+//instead do this
+
+let obj = {value: 10};
+
+function increase(obj)
+{
+    obj.value++;
+}
+
+increase(obj);
+
+//now obj's value is 11 bc we passed its address into the function
+
+//Adding/Removing Properties
+    //objects are dynamic, you can add or remove extra properties
+
+//recall this constructor object from earlier
+
+/*
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    this.draw = function(){
+        console.log("draw");
+    }
+}
+*/
+
+const myCircle = new Circle(10);
+
+myCircle.location = {x: 1}; //added the property of location (an object with an x value)
+myCircle["location"] = {x: 2}; //another way to do this, x now = 2
+
+delete myCircle.location; //deletes the location propety , can use bracket notation too
+
+//Enumerating Properties
+
+
