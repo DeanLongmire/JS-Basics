@@ -67,9 +67,26 @@ circle.draw();
 function Circle(radius) //start function name with Capital letter
 {
     this.radius = radius;
-    this.draw = function(){
+    let defaultLocation = {x: 0, y: 0};  //private
+    let computeOptimumLocation = function() { //private
+        //code here
+    }
+    this.draw = function() {
+        computeOptimumLocation();
         console.log("draw");
     }
+
+    Object.defineProperty(this,"defaultLocation",{
+        get: function() {
+            return defaultLocation;
+        },
+        set: function(value) {
+            if(!value.x || !value.y)
+                throw new Error("Invalid location.");
+
+            defaultLocation = value;
+        }
+    });
 }
 
 const another = new Circle(1); 
@@ -173,6 +190,104 @@ for (let key in myCircle) //cycels through all properties/methods in myCircle
 if("radius" in myCircle)
     console.log("myCircle has a radius of " + myCircle.radius);
 
-//Abstraction
+//Abstraction - Private Properties and Methods
+    //hide details and complexity and show only the essentials
+
+//recall this contructor with some updated properties
+
+/*
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    this.defaultLocation = {x: 0, y: 0};
+    this.computeOptimumLocation = function() {
+        //code
+    }
+    this.draw = function(){
+        this.computeOptimimLocation();
+        console.log("draw");
+    }
+}
+*/
+
+const newCircle = new Circle(10);
+
+//we dont want the user to have access to the default location or be able to call the compute method
+//we will make these private by declaring them using let
+
+/*
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    let defaultLocation = {x: 0, y: 0};  //'private'
+    let computeOptimumLocation = function() { //'private'
+        //code here
+    }
+    this.draw = function() { //can access members of its parent function
+        computeOptimumLocation();
+        console.log("draw");
+    }
+}
+*/
+
+//this is the concept of closure
+
+//Getters/Setters
+    //being able to read or set private members
+    //need a gettor or setter function
+
+/*
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    let defaultLocation = {x: 0, y: 0};  //private
+    let computeOptimumLocation = function() { //private
+        //code here
+    }
+    this.draw = function() {
+        computeOptimumLocation();
+        console.log("draw");
+    }
+
+    Object.defineProperty(this,"defaultLocation",{get: function() {return defaultLocation;} });
+    //this line allows you to access the value of default location outside of this object
+    //arguments are this, the property name, and the key word 'get' with a function that returns the default Location
+}
+*/
+
+//add set to be able to set an objects property value as well as check for errors
+
+/*
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    let defaultLocation = {x: 0, y: 0};  //private
+    let computeOptimumLocation = function() { //private
+        //code here
+    }
+    this.draw = function() {
+        computeOptimumLocation();
+        console.log("draw");
+    }
+
+    Object.defineProperty(this,"defaultLocation",{
+        get: function() { //getter
+            return defaultLocation;
+        },
+        set: function(value) { //setter
+            if(!value.x || !value.y)
+                throw new Error("Invalid location.");
+
+            defaultLocation = value;
+        }
+    });
+}
+*/
+
+
+console.log(newCircle.defaultLocation); //use getter to see default location
+let newLocation = {x: 1, y: 1};
+newCircle.defaultLocation = newLocation; //use setter to set new default location
+console.log(newCircle.defaultLocation); //use getter to ensure that it has changed
 
 
