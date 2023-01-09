@@ -43,11 +43,45 @@ const circle = {
 circle.draw();
 */
 
-//Factories (constructor function)
+//Factories
     //say you want to make another circle, you would have to copy and paste above code
     //Like classes and structs in C++
 
-function createCircle()
+function createCircle(radius) //factory function
 {
-
+    return {
+        radius,   //if key and value is same you can remove value
+                  //same as radius: radius,
+        draw: function()
+        {
+            console.log("drawing circle");
+        }
+    };
 }
+
+const circle = createCircle(1); //creating a new circle with a radius of 1
+circle.draw();
+
+//Constructor Function
+
+function Circle(radius) //start function name with Capital letter
+{
+    this.radius = radius;
+    this.draw = function(){
+        console.log("draw");
+    }
+}
+
+const another = new Circle(1); 
+
+//Contructor Property
+    //all objects have a property called constructor that references fucntion used to create object
+    //use .contructor on an object in log to see its constructor
+
+let x = {}; //let x = new object
+new String(); //we use literals instead of these contructors for these 3
+new Boolean();
+new Number();
+let y = 50; //f Number( [native code] )
+
+//Functions are objects
